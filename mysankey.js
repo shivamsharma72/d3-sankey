@@ -22,8 +22,8 @@ export const Sankeys = (myMap, currchar) => {
     // console.log("in transitions:", myMap[currchar]?.intransition);
     // console.log("out transitions:", myMap[currchar]?.outtransition);
 
-    const currcharData = myMap[currchar];
-    if (!currcharData) return null;
+    const currchardata = myMap[currchar];
+    if (!currchardata) return null;
     const nodes = [];
     const links = [];
     const nodeIndices = new Map();
@@ -34,7 +34,7 @@ export const Sankeys = (myMap, currchar) => {
     nodeIndices.set(currchar + "_mid", currentIndex++);
 
     // this is for left column
-    Object.entries(currcharData.intransition).forEach(([char, transition]) => {
+    Object.entries(currchardata.intransition).forEach(([char, transition]) => {
       if (char !== currchar && transition.count > 0) {
         const nodeKey = char + "_left";
         if (!nodeIndices.has(nodeKey)) {
@@ -50,7 +50,7 @@ export const Sankeys = (myMap, currchar) => {
     });
 
     // add nodes and linking it for right column
-    Object.entries(currcharData.outtransition).forEach(([char, transition]) => {
+    Object.entries(currchardata.outtransition).forEach(([char, transition]) => {
       if (char !== currchar && transition.count > 0) {
         const nodeKey = char + "_right";
         if (!nodeIndices.has(nodeKey)) {
@@ -68,11 +68,11 @@ export const Sankeys = (myMap, currchar) => {
     return { nodes, links };
   }
 
-  function getCharType(char) {
-    const charData = myMap[char];
+  function chartype(char) {
+    const chardata = myMap[char];
 
-    if (charData) {
-      switch (charData.type) {
+    if (chardata) {
+      switch (chardata.type) {
         case "vowel":
           return "Vowels";
         case "consonant":
@@ -84,8 +84,8 @@ export const Sankeys = (myMap, currchar) => {
     return null;
   }
 
-  function getNodeColor(nodeName) {
-    const type = getCharType(nodeName);
+  function nodecolors(nodeName) {
+    const type = chartype(nodeName);
     return type ? colorScale(type) : "#888";
   }
 
@@ -122,8 +122,7 @@ export const Sankeys = (myMap, currchar) => {
       .style("background-color", "white")
       .style("border", "1px solid black")
       .style("border-radius", "5px")
-      .style("padding", "5px")
-      .style("z-index", "10");
+      .style("padding", "5px");
 
     svg
       .append("g")
@@ -176,7 +175,7 @@ export const Sankeys = (myMap, currchar) => {
       .attr("y", (d) => d.y0)
       .attr("height", (d) => d.y1 - d.y0)
       .attr("width", (d) => d.x1 - d.x0)
-      .attr("fill", (d) => getNodeColor(d.name))
+      .attr("fill", (d) => nodecolors(d.name))
       .attr("stroke", "#000")
       .attr("class", (d) => `sankey-node-${d.name}`)
       .on("mouseover", function (event, d) {
