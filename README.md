@@ -1,4 +1,4 @@
-![Description](images/final.gif)
+![Description](imgs/final.gif)
 
 # Data Visualization
 
