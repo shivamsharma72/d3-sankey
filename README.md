@@ -1,19 +1,19 @@
-![Description](imgs/final.gif)
+# SANKEY CHART AND TREEMAP
 
-# Data Visualization
+![Description](imgs/final.gif)
 
 The project demonstrates interactive data visualization techniques using JavaScript and D3.js, here I have implemented a Sankey chart from scratch using D3.js.
 
 ## Structure
 
 - `index.html` — Main HTML file to view the visualization in a browser.
-- `mysankey.js` — JavaScript file for the Sankey diagram or other visualizations.
-- `imgs/` — Folder containing images used in the visualization.
+- `mysankey.js` — JavaScript file for the Sankey diagram and tree-map.
+- `imgs/` — Folder containing gif.
 - `README.md` — Additional documentation
 
 ## Features
 
-- Custom-built Sankey diagram using D3.js
+- Custom-built Sankey diagram using D3.js linked to a Treemap
 - Interactive and dynamic data flow visualization
 - Visual representation of relationships and quantities between nodes
 
